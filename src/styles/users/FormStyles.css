@@ -48,7 +48,7 @@ body, html {
 /* Campos del formulario */
 .form-group input,
 .form-group select {
-    width: 100%; /* Cambia a 100% para mayor adaptabilidad */
+    width: 90%; /* Cambia a 100% para mayor adaptabilidad */
     padding: 12px;
     margin-bottom: 15px;
     border: 2px solid #ffffff;
