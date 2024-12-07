@@ -46,8 +46,9 @@ body, html {
 }
 
 /* Campos del formulario */
-.form-group input, .form-group select {
-    width: 90%;
+.form-group input,
+.form-group select {
+    width: 100%; /* Cambia a 100% para mayor adaptabilidad */
     padding: 12px;
     margin-bottom: 15px;
     border: 2px solid #ffffff;
@@ -58,26 +59,26 @@ body, html {
     outline: none;
 }
 
-.form-group input::placeholder, .form-group select::placeholder {
+.form-group input::placeholder, 
+.form-group select::placeholder {
     color: #ffffff;
     opacity: 0.8;
 }
 
 /* Selector de tipo de usuario */
 .register-input {
-    background-color: #4B8E8D; /* Fondo del selector */
-    color: white; /* Color del texto */
-    border: 2px solid #ffffff; /* Borde blanco */
-    border-radius: 8px; /* Esquinas redondeadas */
+    background-color: #4B8E8D;
+    color: white;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
     padding: 10px;
     font-size: 1rem;
-    appearance: none; /* Elimina el estilo predeterminado del navegador */
+    appearance: none;
     cursor: pointer;
 }
 
-/* Estilo del selector en foco */
 .register-input:focus {
-    border-color: #FFA629; /* Cambia el color del borde al enfocarse */
+    border-color: #FFA629;
     outline: none;
 }
 
@@ -139,4 +140,98 @@ body, html {
 
 .extra-options a:hover {
     text-decoration: underline;
+}
+
+/* ------------------------ RESPONSIVE DESIGN ------------------------ */
+/* Pantallas pequeñas (tablets y móviles) */
+@media screen and (max-width: 768px) {
+    .form-container {
+        padding: 20px;
+        width: 90%;
+        border-radius: 15px;
+    }
+
+    .form-title, .register-title {
+        font-size: 2rem;
+    }
+
+    .form-group input, .form-group select {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .form-button, .form-button-google {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .google-icon {
+        width: 18px;
+    }
+
+    .extra-options {
+        font-size: 0.8rem;
+    }
+}
+
+/* Pantallas muy pequeñas (móviles verticales) */
+@media screen and (max-width: 480px) {
+    .form-container {
+        padding: 15px;
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .form-title, .register-title {
+        font-size: 1.8rem;
+    }
+
+    .form-group input, .form-group select {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .form-button, .form-button-google {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+
+    .google-icon {
+        width: 16px;
+    }
+
+    .extra-options {
+        font-size: 0.75rem;
+    }
+}
+
+/* Pantallas grandes (desktops) */
+@media screen and (min-width: 1024px) {
+    .form-container {
+        padding: 50px;
+        width: 450px;
+        border-radius: 25px;
+    }
+
+    .form-title, .register-title {
+        font-size: 2.8rem;
+    }
+
+    .form-group input, .form-group select {
+        font-size: 1.2rem;
+        padding: 14px;
+    }
+
+    .form-button, .form-button-google {
+        font-size: 1.2rem;
+        padding: 14px;
+    }
+
+    .google-icon {
+        width: 24px;
+    }
+
+    .extra-options {
+        font-size: 1rem;
+    }
 }
