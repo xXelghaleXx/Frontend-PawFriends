@@ -1,0 +1,110 @@
+.manage-pets-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .add-pet-button {
+    background-color: #FFA629;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .add-pet-button:hover {
+    background-color: #c82333;
+  }
+  
+  .pets-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .pet-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .pet-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .pet-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .edit-button,
+  .delete-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .edit-button {
+    background-color: #FFA629;
+    color: #fff;
+  }
+  
+  .edit-button:hover {
+    background-color: #eb2315;
+  }
+  
+  .delete-button {
+    background-color: #bf2525;
+    color: #fff;
+  }
+  
+  .delete-button:hover {
+    background-color: #ff041d;
+  }
+  
+  .cancel-button {
+    background-color: #FFA629;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .cancel-button:hover {
+    background-color: #eb2315;
+  }
+  
+  .add-pet-form {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: scaleY(0.5);
+    transition: all 0.7s ease;
+  }
+  
+  .add-pet-form.visible {
+    max-height: 500px; /* Ajusta esto según el contenido */
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  
+  .add-pet-form.hidden {
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.4s ease;
+    transform: scaleY(0.2);
+  }
+  

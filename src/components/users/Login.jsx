@@ -2,7 +2,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Importa Link para manejar la navegación
-import '../../styles/users/FormStyles.css'; // Importamos los estilos compartidos
+import '../../styles/users/FormStyles.css'; // Verifica que el path sea correcto// Importamos los estilos compartidos
 import GoogleIcon from '../../assets/google.png'; // Importamos el ícono de Google
 
 function Login() {
@@ -29,7 +29,7 @@ function Login() {
     };
 
     return (
-        <div className="main-content">
+        <div className="login-container">
             <div className="form-container">
                 <form className="form" onSubmit={handleSubmit}>
                     <h2 className="form-title">Login</h2>
@@ -57,7 +57,6 @@ function Login() {
                     </div>
                     <button className="form-button" type="submit">Iniciar Sesión</button>
 
-                    {/* Botón de Google con el ícono */}
                     <a href="/oauth2/authorization/google" style={{ textDecoration: 'none' }}>
                         <button className="form-button-google" type="button">
                             <img src={GoogleIcon} alt="Google icon" className="google-icon" />

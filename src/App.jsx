@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/shared/Navbar";
 import Footer from "./components/shared/Footer";
 import Login from "./components/users/Login";
@@ -9,57 +9,49 @@ import Donaciones from "./components/donations/Donaciones";
 import Albergues from "./components/shelters/Albergues";
 import Encuentros from "./components/adoption/Encuentros";
 import Mascotas from "./components/users/Mascotas";
-import Perfil from "./components/shelters/Perfil"; // Página Perfil
-import EncuentroConfirmacion from "./components/adoption/EncuentroConfirmacion"; // Confirmación de Encuentros
-import ChatAlbergue from "./components/chat/ChatAlbergues"; // Chat de Albergues
+import Perfil from "./components/shelters/Perfil";
+import EncuentroConfirmacion from "./components/adoption/EncuentroConfirmacion";
 import TerminosLegales from "./components/shared/TerminosLegales";
-import FormAdopcion from "./components/adoption/FormAdopcion"; // Formulario de Adopción
-import InfoLegal from "./components/shared/InfoLegal"; // Nuevo componente InfoLegal
+import FormAdopcion from "./components/adoption/FormAdopcion";
+import InfoLegal from "./components/shared/InfoLegal";
+import AdminSite from "./components/admin/adminsite";
+import Home from "./components/shared/Home"; // Asegúrate de importar correctamente el componente Home
 
 function App() {
+  const location = useLocation();
+
+  const currentUser = {
+    tipo_usuario: "albergue",
+    nombre: "Albergue Ejemplo",
+    correo: "albergue@example.com",
+  };
+
+  const hideNavbarFooter = ["/login", "/register"].includes(location.pathname);
+
   return (
-    <Router>
-      <Navbar />
+    <>
+      {!hideNavbarFooter && <Navbar />}
       <div className="main-content">
         <Routes>
-          {/* Ruta principal */}
-          <Route path="/" element={<Login />} />
-
-          {/* Rutas de autenticación */}
           <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
-
-          {/* Ruta de bienvenida */}
           <Route path="/welcome" element={<Welcome />} />
-
-          {/* Rutas adicionales */}
           <Route path="/quienes-somos" element={<QuienesSomos />} />
           <Route path="/donaciones" element={<Donaciones />} />
           <Route path="/albergues" element={<Albergues />} />
-
-          {/* Rutas para Mascotas y Encuentros */}
           <Route path="/mascotas" element={<Mascotas />} />
           <Route path="/encuentros/:id" element={<Encuentros />} />
-
-          {/* Ruta para la nueva funcionalidad EncuentroConfirmacion */}
           <Route path="/confirmacion/:id" element={<EncuentroConfirmacion />} />
-
-          {/* Ruta para la página Perfil */}
           <Route path="/perfil" element={<Perfil />} />
-
-          {/* Ruta para Chat de Albergues */}
-          <Route path="/chat-albergues" element={<ChatAlbergue />} />
-
-          {/* Ruta para Formulario de Adopción */}
           <Route path="/form-adopcion" element={<FormAdopcion />} />
-
-          {/* Ruta para InfoLegal con soporte para parámetros */}
           <Route path="/info-legal" element={<InfoLegal />} />
           <Route path="/terminos-legales" element={<TerminosLegales />} />
+          <Route path="/adminsite" element={<AdminSite user={currentUser} />} />
         </Routes>
       </div>
-      <Footer />
-    </Router>
+      {!hideNavbarFooter && <Footer />}
+    </>
   );
 }
 

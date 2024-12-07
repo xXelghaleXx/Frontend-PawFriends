@@ -13,9 +13,7 @@
     left: 0;
     height: 100vh; /* Asegúrate de que cubra toda la pantalla */
     width: 210px; /* Cambia este valor para ajustar el ancho */
-    background-color: rgba(75, 142, 141, 0.8); /* Fondo semitransparente para efecto glass */
-    backdrop-filter: blur(10px); /* Efecto de desenfoque */
-    -webkit-backdrop-filter: blur(10px); /* Compatibilidad con Safari */
+    background-color: #4b8e8d;
     transition: transform 0.5s ease, opacity 0.5s ease; /* Ajuste de transición */
     transform: translateX(-250px); /* Posición inicial fuera de la vista */
     z-index: 1000; /* Asegúrate de que el slidebar esté por encima del contenido */

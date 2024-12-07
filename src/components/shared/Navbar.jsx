@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../../assets/PawFriends_Logo.webp';  // Importar logo
 import ProfileIcon from '../../assets/user.png';       // Importar icono de usuario
 import Slidebar from './Slidebar';                 // Importar el slidebar
-import UserMenu from '../chat/UserMenu';                 // Importar el UserMenu
+import UserMenu from '../users/UserMenu';                 // Importar el UserMenu
 import "../../styles/shared/navbar.css";
 import "../../styles/global/generalStyles.css";
 

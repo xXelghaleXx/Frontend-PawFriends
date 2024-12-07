@@ -35,8 +35,6 @@ function Register() {
     };
 
     return (
-        <div>
-            <br /><br /><br /><br /><br /><br />
         <div className="main-content">
             <div className="form-container register-form">
                 <form className="form" onSubmit={handleSubmit}>
@@ -153,8 +151,6 @@ function Register() {
                     </div>
                 </form>
             </div>
-        </div>
-        <br /><br /><br /><br /><br /><br />
         </div>
     );
 }
