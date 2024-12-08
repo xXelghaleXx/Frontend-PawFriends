@@ -1,110 +1,167 @@
 .manage-pets-container {
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .add-pet-button {
-    background-color: #FFA629;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-  
-  .add-pet-button:hover {
-    background-color: #c82333;
-  }
-  
-  .pets-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .pet-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    text-align: left;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .pet-image {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-  }
-  
-  .pet-actions {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .edit-button,
-  .delete-button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .edit-button {
-    background-color: #FFA629;
-    color: #fff;
-  }
-  
-  .edit-button:hover {
-    background-color: #eb2315;
-  }
-  
-  .delete-button {
-    background-color: #bf2525;
-    color: #fff;
-  }
-  
-  .delete-button:hover {
-    background-color: #ff041d;
-  }
-  
-  .cancel-button {
-    background-color: #FFA629;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  .cancel-button:hover {
-    background-color: #eb2315;
-  }
-  
-  .add-pet-form {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transform: scaleY(0.5);
-    transition: all 0.7s ease;
-  }
-  
-  .add-pet-form.visible {
-    max-height: 500px; /* Ajusta esto según el contenido */
-    opacity: 1;
-    transform: scaleY(1);
-  }
-  
-  .add-pet-form.hidden {
-    max-height: 0;
-    opacity: 0;
-    transition: all 0.4s ease;
-    transform: scaleY(0.2);
-  }
-  
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.add-pet-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #FFA629;
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.add-pet-button:hover {
+  background-color: #e08a1e;
+  transform: scale(1.1);
+}
+
+.add-pet-form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: scaleY(0.5);
+  transition: all 0.5s ease-in-out;
+}
+
+.add-pet-form.visible {
+  max-height: 500px;
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.add-pet-form.hidden {
+  max-height: 0;
+  opacity: 0;
+  transform: scaleY(0.2);
+}
+
+.add-pet-form h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #333;
+}
+
+.add-pet-form input[type="text"],
+.add-pet-form input[type="number"] {
+  width: calc(100% - 30px);
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.add-pet-form input[type="text"]:focus,
+.add-pet-form input[type="number"]:focus {
+  border-color: #FFA629;
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 166, 41, 0.5);
+}
+
+.save-pet-button,
+.cancel-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.save-pet-button {
+  background-color: #FFA629;
+  color: white;
+  margin-right: 10px;
+}
+
+.save-pet-button:hover {
+  background-color: #e08a1e;
+}
+
+.cancel-button {
+  background-color: #bf2525;
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #a31e1e;
+}
+
+.pets-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.pets-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.pets-list::-webkit-scrollbar-thumb {
+  background-color: #FFA629;
+  border-radius: 5px;
+}
+
+.pet-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+}
+
+.pet-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.pet-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.edit-button,
+.delete-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: #FFA629;
+  color: #fff;
+}
+
+.delete-button {
+  background-color: #bf2525;
+  color: #fff;
+}

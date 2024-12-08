@@ -1,0 +1,164 @@
+.solicitudes-container {
+    padding: 20px;
+    text-align: center;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  .solicitudes-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .solicitudes-table th,
+  .solicitudes-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .solicitudes-table th {
+    background-color: #FFA629;
+    color: white;
+  }
+  
+  .solicitudes-table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .solicitudes-table td {
+    font-size: 14px;
+  }
+  
+  .estado {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+  }
+  
+  .estado.pendiente {
+    background-color: #ffeb3b;
+    color: #000;
+  }
+  
+  .estado.aceptada {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .estado.rechazada {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .acciones {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .aceptar-button,
+  .rechazar-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  .aceptar-button {
+    background-color: #3e9541;
+    color: white;
+  }
+  
+  .aceptar-button:hover {
+    background-color: #2cd932;
+  }
+  
+  .rechazar-button {
+    background-color: #b83228;
+    color: white;
+  }
+  
+  .rechazar-button:hover {
+    background-color: #ec2320;
+  }
+  
+  /* ========================================= */
+  /* RESPONSIVE DESIGN */
+  /* ========================================= */
+  
+  /* Dispositivos pequeños (teléfonos) */
+  @media (max-width: 768px) {
+    .solicitudes-table {
+      display: block;
+      overflow-x: auto;
+      border: none;
+    }
+  
+    .solicitudes-table th,
+    .solicitudes-table td {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+  
+    .solicitudes-table th {
+      background-color: #FFA629;
+      font-weight: bold;
+    }
+  
+    .solicitudes-table td {
+      font-size: 12px;
+    }
+  
+    .estado {
+      display: inline-block;
+      margin-top: 5px;
+      font-size: 12px;
+    }
+  
+    .acciones {
+      flex-direction: column;
+      gap: 5px;
+    }
+  
+    .aceptar-button,
+    .rechazar-button {
+      width: 100%;
+      font-size: 12px;
+      padding: 8px 10px;
+    }
+  }
+  
+  /* Dispositivos medianos (tablets) */
+  @media (max-width: 1024px) {
+    .solicitudes-container {
+      max-width: 90%;
+      padding: 15px;
+    }
+  
+    .solicitudes-table td {
+      font-size: 13px;
+    }
+  
+    .aceptar-button,
+    .rechazar-button {
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+  }
+  

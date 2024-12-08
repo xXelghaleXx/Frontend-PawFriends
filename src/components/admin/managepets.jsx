@@ -47,9 +47,7 @@ const ManagePets = () => {
       )}
 
       {/* Formulario para añadir una nueva mascota con animación */}
-      <div
-        className={`add-pet-form ${showAddForm ? "visible" : "hidden"}`}
-      >
+      <div className={`add-pet-form ${showAddForm ? "visible" : "hidden"}`}>
         <h2>Añadir Mascota</h2>
         <input
           type="text"
@@ -69,7 +67,7 @@ const ManagePets = () => {
           value={newPet.edad}
           onChange={(e) => setNewPet({ ...newPet, edad: e.target.value })}
         />
-        <button className="add-pet-button" onClick={handleAddPet}>
+        <button className="save-pet-button" onClick={handleAddPet}>
           Guardar Mascota
         </button>
         <button
@@ -121,7 +119,7 @@ const ManagePets = () => {
             type="text"
             placeholder="Raza"
             value={editPet.raza}
-            onChange={(e) => setEditPet({ ...editPet, raza: e.target.value })}
+          onChange={(e) => setEditPet({ ...editPet, raza: e.target.value })}
           />
           <input
             type="number"
@@ -130,7 +128,13 @@ const ManagePets = () => {
             onChange={(e) => setEditPet({ ...editPet, edad: e.target.value })}
           />
           <button className="update-pet-button" onClick={handleUpdatePet}>
-            Actualizar Mascota
+            Guardar
+          </button>
+          <button
+            className="cancel-button"
+            onClick={() => setEditPet(null)}
+          >
+            Cancelar
           </button>
         </div>
       )}
