@@ -10,6 +10,11 @@ const Solicitudes = () => {
       mascota: "Luna (Labrador)",
       fecha: "2024-12-01",
       estado: "Pendiente",
+      respuestas: [
+        { pregunta: "Pregunta 1", respuesta: "Respuesta 1" },
+        { pregunta: "Pregunta 2", respuesta: "Respuesta 2" },
+        { pregunta: "Pregunta 3", respuesta: "Respuesta 3" },
+      ],
     },
     {
       id: 2,
@@ -17,25 +22,42 @@ const Solicitudes = () => {
       mascota: "Max (Bulldog)",
       fecha: "2024-12-02",
       estado: "Pendiente",
+      respuestas: [
+        { pregunta: "Pregunta 1", respuesta: "Respuesta A" },
+        { pregunta: "Pregunta 2", respuesta: "Respuesta B" },
+      ],
     },
   ]);
 
+  const [selectedSolicitud, setSelectedSolicitud] = useState(null);
+
   // Función para cambiar el estado de la solicitud a "Aceptada"
-  const handleAceptar = (id) => {
+  const handleAceptar = () => {
     setSolicitudes(
       solicitudes.map((solicitud) =>
-        solicitud.id === id ? { ...solicitud, estado: "Aceptada" } : solicitud
+        solicitud.id === selectedSolicitud.id
+          ? { ...solicitud, estado: "Aceptada" }
+          : solicitud
       )
     );
+    setSelectedSolicitud(null);
   };
 
   // Función para cambiar el estado de la solicitud a "Rechazada"
-  const handleRechazar = (id) => {
+  const handleRechazar = () => {
     setSolicitudes(
       solicitudes.map((solicitud) =>
-        solicitud.id === id ? { ...solicitud, estado: "Rechazada" } : solicitud
+        solicitud.id === selectedSolicitud.id
+          ? { ...solicitud, estado: "Rechazada" }
+          : solicitud
       )
     );
+    setSelectedSolicitud(null);
+  };
+
+  // Función para manejar el botón "Ver Detalles"
+  const handleVerDetalles = (solicitud) => {
+    setSelectedSolicitud(solicitud);
   };
 
   return (
@@ -76,27 +98,59 @@ const Solicitudes = () => {
                   </span>
                 </td>
                 <td>
-                  {solicitud.estado === "Pendiente" && (
-                    <div className="acciones">
-                      <button
-                        className="aceptar-button"
-                        onClick={() => handleAceptar(solicitud.id)}
-                      >
-                        Aceptar
-                      </button>
-                      <button
-                        className="rechazar-button"
-                        onClick={() => handleRechazar(solicitud.id)}
-                      >
-                        Rechazar
-                      </button>
-                    </div>
-                  )}
+                  <button
+                    className="detalles-button"
+                    onClick={() => handleVerDetalles(solicitud)}
+                  >
+                    Ver Detalles
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      )}
+
+      {selectedSolicitud && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Detalle de Solicitud</h2>
+            <p>
+              <strong>Adoptante:</strong> {selectedSolicitud.adoptante}
+            </p>
+            <p>
+              <strong>Mascota:</strong> {selectedSolicitud.mascota}
+            </p>
+            <h3>Respuestas al Formulario:</h3>
+            <ul>
+              {selectedSolicitud.respuestas.map((respuesta, index) => (
+                <li key={index}>
+                  <strong>{respuesta.pregunta}:</strong> {respuesta.respuesta}
+                </li>
+              ))}
+            </ul>
+            <div className="modal-actions">
+              <button
+                className="aceptar-button"
+                onClick={handleAceptar}
+              >
+                Aceptar
+              </button>
+              <button
+                className="rechazar-button"
+                onClick={handleRechazar}
+              >
+                Rechazar
+              </button>
+              <button
+                className="cerrar-button"
+                onClick={() => setSelectedSolicitud(null)}
+              >
+                Volver a la Lista
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

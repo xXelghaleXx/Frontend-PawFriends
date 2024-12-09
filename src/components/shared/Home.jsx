@@ -3,6 +3,8 @@ import "../../styles/shared/Home.css"; // Asegúrate de tener estilos básicos p
 
 function Home() {
   return (
+    <div>
+      <br /><br /><br /><br /><br /><br />
     <div className="home-container">
       <header className="home-header">
         <h1 className="home-title">Bienvenido a PawFriends</h1>
@@ -42,6 +44,8 @@ function Home() {
         </section>
       </div>
     </div>
+  <br /><br /><br />
+  </div>
   );
 }
 
