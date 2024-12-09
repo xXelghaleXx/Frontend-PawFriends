@@ -39,54 +39,60 @@ const mascotas = [
 
 const EncuentroConfirmacion = () => {
   const { id } = useParams();
-  const navigate = useNavigate(); // Para redirigir
+  const navigate = useNavigate();
   const mascota = mascotas.find((m) => m.id === parseInt(id)) || mascotas[0];
   const [imagenActual, setImagenActual] = useState(0);
 
-  // Función para avanzar en el carrusel
   const siguienteImagen = () => {
     setImagenActual((prev) => (prev + 1) % mascota.imagenes.length);
   };
 
-  // Función para retroceder en el carrusel
   const anteriorImagen = () => {
-    setImagenActual((prev) => (prev - 1 + mascota.imagenes.length) % mascota.imagenes.length);
+    setImagenActual((prev) =>
+      (prev - 1 + mascota.imagenes.length) % mascota.imagenes.length
+    );
   };
 
-  // Función para manejar "Hablar con el albergue"
   const hablarConAlbergue = () => {
     navigate(`/chat-albergues?albergue=${encodeURIComponent(mascota.albergue)}`);
   };
 
-  // Función para manejar "Adoptar"
   const irAlFormularioAdopcion = () => {
     navigate(`/form-adopcion?mascota=${encodeURIComponent(mascota.nombre)}`);
   };
 
-  // Función para regresar a la página anterior
   const regresar = () => {
-    navigate(-1); // Redirige a la página anterior
+    navigate(-1);
   };
 
   return (
+    <div>
+      <br />
     <div className="confirmacion-container">
       <div className="perfil-card">
-        {/* Carrusel de imágenes */}
-        <div className="imagen-container">
-          <button className="imagen-flecha" onClick={anteriorImagen}>
+        <div className="imagen-container-encuentro">
+          <button className="carrusel-boton-encuentro" onClick={anteriorImagen}>
             {"<"}
           </button>
           <img
             src={mascota.imagenes[imagenActual]}
             alt={`Imagen de ${mascota.nombre}`}
-            className="imagen-principal"
+            className="imagen-principal-encuentro"
           />
-          <button className="imagen-flecha" onClick={siguienteImagen}>
+          <button className="carrusel-boton-encuentro" onClick={siguienteImagen}>
             {">"}
           </button>
+          <div className="dots-container-encuentro">
+            {mascota.imagenes.map((_, index) => (
+              <div
+                key={index}
+                className={`dot-encuentro ${index === imagenActual ? "active" : ""}`}
+                onClick={() => setImagenActual(index)}
+              ></div>
+            ))}
+          </div>
         </div>
 
-        {/* Detalles de la mascota */}
         <div className="datos-container">
           <h2>{mascota.nombre}</h2>
           <p>
@@ -114,7 +120,10 @@ const EncuentroConfirmacion = () => {
             <strong>Albergue:</strong> {mascota.albergue}
           </p>
           <div className="acciones">
-            <button className="boton-amarillo" onClick={irAlFormularioAdopcion}>
+            <button
+              className="boton-amarillo"
+              onClick={irAlFormularioAdopcion}
+            >
               Adoptar
             </button>
             <button className="boton-naranja" onClick={hablarConAlbergue}>
@@ -126,6 +135,7 @@ const EncuentroConfirmacion = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

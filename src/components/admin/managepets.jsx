@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useState } from "react";
 import "../../styles/admin/managepets.css";
 
@@ -8,85 +7,67 @@ const ManagePets = () => {
     { id: 2, nombre: "Luna", raza: "Labrador", edad: 5, imagen: null },
   ]);
 
-  const [newPet, setNewPet] = useState({ nombre: "", raza: "", edad: "" });
-  const [editPet, setEditPet] = useState(null);
-  const [showAddForm, setShowAddForm] = useState(false);
+  const [formData, setFormData] = useState({ nombre: "", raza: "", edad: "", imagen: null });
+  const [showForm, setShowForm] = useState(false);
+  const [selectedPet, setSelectedPet] = useState(null);
 
+  // Añadir una nueva mascota
   const handleAddPet = () => {
-    const id = pets.length > 0 ? pets[pets.length - 1].id + 1 : 1;
-    setPets([...pets, { id, ...newPet }]);
-    setNewPet({ nombre: "", raza: "", edad: "" });
-    setShowAddForm(false);
+    if (!formData.nombre || !formData.raza || !formData.edad) return;
+    const id = pets.length + 1;
+    setPets([...pets, { id, ...formData }]);
+    resetForm();
+    setShowForm(false);
   };
 
+  // Editar una mascota seleccionada
   const handleEditPet = (pet) => {
-    setEditPet(pet);
+    setSelectedPet(pet);
+    setFormData(pet);
+    setShowForm(true);
   };
 
-  const handleUpdatePet = () => {
-    setPets(pets.map((pet) => (pet.id === editPet.id ? editPet : pet)));
-    setEditPet(null);
+  // Guardar los cambios en la mascota editada
+  const handleSaveEdit = () => {
+    setPets(pets.map((pet) => (pet.id === selectedPet.id ? formData : pet)));
+    resetForm();
   };
 
+  // Eliminar una mascota
   const handleDeletePet = (id) => {
     setPets(pets.filter((pet) => pet.id !== id));
+  };
+
+  // Actualizar los datos del formulario
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Resetear el formulario
+  const resetForm = () => {
+    setFormData({ nombre: "", raza: "", edad: "", imagen: null });
+    setSelectedPet(null);
+    setShowForm(false);
   };
 
   return (
     <div className="manage-pets-container">
       <h1>Mis Mascotas</h1>
 
-      {/* Botón para mostrar/ocultar el formulario de añadir */}
-      {!showAddForm && (
-        <button
-          className="add-pet-button"
-          onClick={() => setShowAddForm(true)}
-        >
-          Añadir Mascota
-        </button>
-      )}
+      <button 
+        className="add-pet-button" 
+        onClick={() => { 
+          resetForm();
+          setShowForm(true); 
+        }}>
+        Añadir Mascota
+      </button>
 
-      {/* Formulario para añadir una nueva mascota con animación */}
-      <div className={`add-pet-form ${showAddForm ? "visible" : "hidden"}`}>
-        <h2>Añadir Mascota</h2>
-        <input
-          type="text"
-          placeholder="Nombre"
-          value={newPet.nombre}
-          onChange={(e) => setNewPet({ ...newPet, nombre: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Raza"
-          value={newPet.raza}
-          onChange={(e) => setNewPet({ ...newPet, raza: e.target.value })}
-        />
-        <input
-          type="number"
-          placeholder="Edad"
-          value={newPet.edad}
-          onChange={(e) => setNewPet({ ...newPet, edad: e.target.value })}
-        />
-        <button className="save-pet-button" onClick={handleAddPet}>
-          Guardar Mascota
-        </button>
-        <button
-          className="cancel-button"
-          onClick={() => setShowAddForm(false)}
-        >
-          Cancelar
-        </button>
-      </div>
-
-      {/* Lista de mascotas */}
       <div className="pets-list">
         {pets.map((pet) => (
           <div key={pet.id} className="pet-card">
-            <img
-              src={pet.imagen || "/default-pet.png"}
-              alt={pet.nombre}
-              className="pet-image"
-            />
+            <img src={pet.imagen || "/default-pet.png"} alt={pet.nombre} className="pet-image" />
             <h2>{pet.nombre}</h2>
             <p>Raza: {pet.raza}</p>
             <p>Edad: {pet.edad} años</p>
@@ -94,10 +75,7 @@ const ManagePets = () => {
               <button className="edit-button" onClick={() => handleEditPet(pet)}>
                 Editar
               </button>
-              <button
-                className="delete-button"
-                onClick={() => handleDeletePet(pet.id)}
-              >
+              <button className="delete-button" onClick={() => handleDeletePet(pet.id)}>
                 Eliminar
               </button>
             </div>
@@ -105,47 +83,46 @@ const ManagePets = () => {
         ))}
       </div>
 
-      {/* Formulario para editar una mascota */}
-      {editPet && (
-        <div className="edit-pet-form">
-          <h2>Editar Mascota</h2>
-          <input
-            type="text"
-            placeholder="Nombre"
-            value={editPet.nombre}
-            onChange={(e) => setEditPet({ ...editPet, nombre: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Raza"
-            value={editPet.raza}
-          onChange={(e) => setEditPet({ ...editPet, raza: e.target.value })}
-          />
-          <input
-            type="number"
-            placeholder="Edad"
-            value={editPet.edad}
-            onChange={(e) => setEditPet({ ...editPet, edad: e.target.value })}
-          />
-          <button className="update-pet-button" onClick={handleUpdatePet}>
-            Guardar
-          </button>
-          <button
-            className="cancel-button"
-            onClick={() => setEditPet(null)}
-          >
-            Cancelar
-          </button>
+      {showForm && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>{selectedPet ? "Editar Mascota" : "Añadir Mascota"}</h2>
+            <input
+              type="text"
+              name="nombre"
+              placeholder="Nombre"
+              value={formData.nombre}
+              onChange={handleInputChange}
+            />
+            <input
+              type="text"
+              name="raza"
+              placeholder="Raza"
+              value={formData.raza}
+              onChange={handleInputChange}
+            />
+            <input
+              type="number"
+              name="edad"
+              placeholder="Edad"
+              value={formData.edad}
+              onChange={handleInputChange}
+            />
+            <div className="form-actions">
+              <button 
+                className="save-pet-button" 
+                onClick={selectedPet ? handleSaveEdit : handleAddPet}>
+                {selectedPet ? "Guardar Cambios" : "Añadir"}
+              </button>
+              <button className="cancel-button" onClick={resetForm}>
+                Cancelar
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
   );
-};
-
-ManagePets.propTypes = {
-  user: PropTypes.shape({
-    correo: PropTypes.string,
-  }),
 };
 
 export default ManagePets;

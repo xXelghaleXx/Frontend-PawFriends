@@ -1,167 +1,139 @@
 .manage-pets-container {
-  padding: 20px;
-  text-align: center;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  max-width: 900px;
+  max-width: 800px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .add-pet-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
   background-color: #FFA629;
   color: white;
-  padding: 15px 25px;
-  border: none;
+  padding: 10px 20px;
   border-radius: 50px;
   cursor: pointer;
   font-size: 16px;
-  font-weight: bold;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-  transition: all 0.3s ease;
+  transition: 0.3s;
+  margin-bottom: 20px;
 }
 
 .add-pet-button:hover {
   background-color: #e08a1e;
-  transform: scale(1.1);
-}
-
-.add-pet-form {
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  margin-top: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transform: scaleY(0.5);
-  transition: all 0.5s ease-in-out;
-}
-
-.add-pet-form.visible {
-  max-height: 500px;
-  opacity: 1;
-  transform: scaleY(1);
-}
-
-.add-pet-form.hidden {
-  max-height: 0;
-  opacity: 0;
-  transform: scaleY(0.2);
-}
-
-.add-pet-form h2 {
-  margin-bottom: 20px;
-  font-size: 20px;
-  color: #333;
-}
-
-.add-pet-form input[type="text"],
-.add-pet-form input[type="number"] {
-  width: calc(100% - 30px);
-  padding: 10px 15px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: border-color 0.3s ease;
-}
-
-.add-pet-form input[type="text"]:focus,
-.add-pet-form input[type="number"]:focus {
-  border-color: #FFA629;
-  outline: none;
-  box-shadow: 0 0 5px rgba(255, 166, 41, 0.5);
-}
-
-.save-pet-button,
-.cancel-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.save-pet-button {
-  background-color: #FFA629;
-  color: white;
-  margin-right: 10px;
-}
-
-.save-pet-button:hover {
-  background-color: #e08a1e;
-}
-
-.cancel-button {
-  background-color: #bf2525;
-  color: white;
-}
-
-.cancel-button:hover {
-  background-color: #a31e1e;
 }
 
 .pets-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
-  padding: 20px;
-  max-height: 400px;
-  overflow-y: auto;
-  border-radius: 10px;
-  background-color: #fff;
-}
-
-.pets-list::-webkit-scrollbar {
-  width: 8px;
-}
-
-.pets-list::-webkit-scrollbar-thumb {
-  background-color: #FFA629;
-  border-radius: 5px;
 }
 
 .pet-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background: #fff;
   border-radius: 10px;
-  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.pet-card:hover {
+  transform: scale(1.05);
 }
 
 .pet-image {
   width: 100%;
-  height: 180px;
+  height: 150px;
+  border-radius: 10px;
   object-fit: cover;
-  border-radius: 5px;
 }
 
 .pet-actions {
   display: flex;
   justify-content: space-around;
+  margin-top: 10px;
 }
 
-.edit-button,
+.edit-button, 
 .delete-button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: bold;
 }
 
 .edit-button {
-  background-color: #FFA629;
-  color: #fff;
+  background-color: #4CAF50;
+  color: white;
 }
 
 .delete-button {
-  background-color: #bf2525;
-  color: #fff;
+  background-color: #f44336;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #45a049;
+}
+
+.delete-button:hover {
+  background-color: #e53935;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.save-pet-button, 
+.cancel-button {
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: bold;
+}
+
+.save-pet-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.save-pet-button:hover {
+  background-color: #45a049;
+}
+
+.cancel-button:hover {
+  background-color: #e53935;
+}
+
+input[type="text"], 
+input[type="number"] {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
 }

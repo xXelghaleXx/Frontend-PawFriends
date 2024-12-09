@@ -1,84 +1,174 @@
+/* Contenedor principal */
 .confirmacion-container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
-}
-
-.perfil-card {
+  }
+  
+  /* Tarjeta de perfil */
+  .perfil-card {
     display: flex;
-    flex-direction: row; /* Diseño horizontal por defecto */
+    flex-direction: row; /* Diseño horizontal */
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    max-width: 800px;
+    max-width: 700px;
     width: 100%;
-    min-height: 400px; /* Altura mínima */
-}
-
-.imagen-container {
-    flex: 1;
+    min-height: 500px; /* Altura fija */
+  }
+  
+  /* Contenedor de la imagen */
+  .imagen-container-encuentro {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Organización vertical */
+    align-items: center; /* Centra la imagen horizontalmente */
+    justify-content: center; /* Centra la imagen verticalmente */
+    width: 40%; /* Toma el 60% del ancho disponible */
+    height: 480px; /* Tamaño fijo para mantener las imágenes estables */
+    overflow: hidden; /* Oculta contenido fuera del contenedor */
+    background-color: #f1f1f1; /* Fondo claro */
+    border-radius: 8px; /* Bordes redondeados */
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+  }
+  
+  /* Imagen principal */
+  .imagen-principal-encuentro {
+    width: 90%; /* Imagen ocupa todo el ancho del contenedor */
+    height: 90%; /* Imagen ocupa toda la altura del contenedor */
+    object-fit: cover; /* Ajusta la imagen para rellenar el contenedor */
+    object-position: center; /* Centra el contenido visible de la imagen */
+    border-radius: 8px; /* Bordes redondeados */
+    transition: transform 0.5s ease; /* Efecto suave para el zoom */
+  }
+  
+  .imagen-principal-encuentro:hover {
+    transform: scale(1.05); /* Efecto de zoom al pasar el cursor */
+  }
+  
+  /* Botones del carrusel */
+  .carrusel-boton-encuentro {
+    position: absolute;
+    top: 50%; /* Centra las flechas verticalmente */
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%; /* Botones redondeados */
+    font-size: 20px;
+    z-index: 10; /* Asegura que esté por encima de la imagen */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+  }
+  
+  .carrusel-boton-encuentro:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo más oscuro */
+    transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+  }
+  
+  .carrusel-boton-encuentro:first-child {
+    left: 10px; /* Flecha izquierda */
+  }
+  
+  .carrusel-boton-encuentro:last-child {
+    right: 10px; /* Flecha derecha */
+  }
+  
+  /* Indicadores (dots) */
+  .dots-container-encuentro {
+    position: absolute; /* Posiciona los dots en relación al contenedor */
+    bottom: 10px; /* Coloca los dots justo debajo de la imagen */
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    width: 100%;
-    height: 300px;
-    background-color: #f1f1f1;
-    overflow: hidden; /* Oculta contenido que exceda el contenedor */
-}
-
-.imagen-principal {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ajusta la imagen al contenedor */
-    border-radius: 10px;
-}
-
-.datos-container {
+    gap: 8px; /* Espaciado entre los puntos */
+  }
+  
+  .dot-encuentro {
+    width: 12px;
+    height: 12px;
+    background-color: #ece9e94d;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dot-encuentro.active {
+    background-color: rgba(255, 255, 255, 0.7); /* Punto activo */
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .imagen-container-encuentro {
+      width: 100%; /* Ocupa todo el ancho disponible */
+      height: 300px; /* Reduce la altura en pantallas más pequeñas */
+    }
+  
+    .carrusel-boton-encuentro {
+      font-size: 16px; /* Reduce el tamaño de las flechas */
+      padding: 8px; /* Reduce el tamaño del botón */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .imagen-container-encuentro {
+      height: 250px; /* Más pequeño en móviles */
+    }
+  
+    .carrusel-boton-encuentro {
+      font-size: 14px; /* Tamaño más pequeño para pantallas muy pequeñas */
+      padding: 6px; /* Reduce aún más el tamaño del botón */
+    }
+  }  
+  
+  /* Contenedor de los datos */
+  .datos-container {
     flex: 2;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 15px;
     text-align: left;
-}
-
-.datos-container h2 {
+  }
+  
+  .datos-container h2 {
     color: #335353;
     font-size: 1.8rem;
     margin-bottom: 10px;
-}
-
-.datos-container p {
+  }
+  
+  .datos-container p {
     margin: 0;
     font-size: 1rem;
     color: #555;
-}
-
-.datos-container ul {
+  }
+  
+  .datos-container ul {
     margin: 10px 0;
     padding-left: 20px;
-}
-
-.datos-container ul li {
+  }
+  
+  .datos-container ul li {
     margin-bottom: 5px;
     font-size: 1rem;
     color: #777;
-}
-
-.acciones {
+  }
+  
+  /* Contenedor de botones */
+  .acciones {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
     gap: 10px; /* Espacio entre botones */
-}
-
-.boton-amarillo,
-.boton-naranja,
-.boton-gris {
+  }
+  
+  .boton-amarillo,
+  .boton-naranja,
+  .boton-gris {
     padding: 10px 15px;
     border: none;
     border-radius: 8px;
@@ -87,100 +177,81 @@
     transition: background-color 0.3s ease;
     width: 100%; /* Botones responsivos */
     max-width: 150px;
-}
-
-.boton-amarillo {
+  }
+  
+  .boton-amarillo {
     background-color: #ffa629;
     color: white;
-}
-
-.boton-amarillo:hover {
+  }
+  
+  .boton-amarillo:hover {
     background-color: #218838;
-}
-
-.boton-naranja {
+  }
+  
+  .boton-naranja {
     background-color: #ffa629;
     color: white;
-}
-
-.boton-naranja:hover {
+  }
+  
+  .boton-naranja:hover {
     background-color: #d82307;
-}
-
-.boton-gris {
+  }
+  
+  .boton-gris {
     background-color: #ffa629;
     color: white;
-}
-
-.boton-gris:hover {
+  }
+  
+  .boton-gris:hover {
     background-color: #d82307;
-}
-
-.imagen-flecha {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 1.5rem;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.imagen-flecha:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.imagen-flecha:first-child {
-    left: 10px;
-}
-
-.imagen-flecha:last-child {
-    right: 10px;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
     .perfil-card {
-        flex-direction: column; /* Cambia el diseño a columnas */
-        align-items: center;
-        min-height: auto; /* Altura dinámica */
+      flex-direction: column; /* Cambia el diseño a columnas */
+      align-items: center;
+      min-height: auto; /* Altura dinámica */
     }
-
-    .imagen-container {
-        height: 250px; /* Reduce el tamaño en pantallas pequeñas */
-        width: 100%;
+  
+    .imagen-container-encuentro {
+      width: 90%; /* Ocupa todo el ancho disponible */
+      height: 300px; /* Reduce la altura en pantallas más pequeñas */
     }
-
+  
     .datos-container {
-        text-align: center; /* Centra el texto en pantallas pequeñas */
-        padding: 15px;
+      text-align: center; /* Centra el texto en pantallas pequeñas */
+      padding: 15px;
     }
-
+  
     .boton-amarillo,
     .boton-naranja,
     .boton-gris {
-        width: 100%; /* Botones ocupan todo el ancho */
+      width: 90%; /* Botones ocupan todo el ancho */
     }
-
+  
     .acciones {
-        flex-direction: column; /* Botones en columna */
-        gap: 15px; /* Mayor espacio entre botones */
+      flex-direction: column; /* Botones en columna */
+      gap: 15px; /* Mayor espacio entre botones */
     }
-}
-
-@media (max-width: 480px) {
-    .imagen-container {
-        height: 200px; /* Más pequeño en móviles */
+  }
+  
+  @media (max-width: 480px) {
+    .imagen-container-encuentro {
+      height: 250px; /* Más pequeño en móviles */
     }
-
+  
     .datos-container h2 {
-        font-size: 1.5rem; /* Reduce tamaño del texto */
+      font-size: 1.5rem; /* Reduce tamaño del texto */
     }
-
+  
     .datos-container p {
-        font-size: 0.9rem;
+      font-size: 0.9rem;
     }
-}
+  
+    .carrusel-boton-encuentro {
+      font-size: 14px; /* Tamaño más pequeño para pantallas muy pequeñas */
+      padding: 5px; /* Reduce aún más el tamaño del botón */
+    }
+  }
+  

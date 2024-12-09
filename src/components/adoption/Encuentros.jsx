@@ -72,27 +72,27 @@ const Encuentros = () => {
   return (
     <div>
       <br /><br /><br /><br /><br />
-    <div className="encuentros-container">
-      <div className={`perfil-card ${animando ? "animating-out" : ""}`}>
-        <div className="imagen-container">
-          <button className="carrusel-boton" onClick={anteriorImagen}>
+    <div className="encuentros-container-encuentro">
+      <div className={`perfil-card-encuentro ${animando ? "animating-out-encuentro" : ""}`}>
+        <div className="imagen-container-encuentro">
+          <button className="carrusel-boton-encuentro" onClick={anteriorImagen}>
             ◀
           </button>
           <img src={mascota.imagenes[imagenActual]} alt={`Imagen de ${mascota.nombre}`} />
-          <button className="carrusel-boton" onClick={siguienteImagen}>
+          <button className="carrusel-boton-encuentro" onClick={siguienteImagen}>
             ▶
           </button>
-          <div className="dots-container">
+          <div className="dots-container-encuentro">
             {mascota.imagenes.map((_, index) => (
               <div
                 key={index}
-                className={`dot ${index === imagenActual ? "active" : ""}`}
+                className={`dot-encuentro ${index === imagenActual ? "active-encuentro" : ""}`}
                 onClick={() => cambiarImagen(index)}
               ></div>
             ))}
           </div>
         </div>
-        <div className="datos-container">
+        <div className="datos-container-encuentro">
           <h2>
             {mascota.nombre}, {mascota.edad}
           </h2>
@@ -109,17 +109,17 @@ const Encuentros = () => {
           </ul>
         </div>
         {/* Contenedor centrado de botones */}
-        <div className="acciones">
-          <button className="boton-verde" onClick={aceptarMascota}>
+        <div className="acciones-encuentro">
+          <button className="boton-verde-encuentro" onClick={aceptarMascota}>
             ✔
           </button>
-          <button className="boton-rojo" onClick={rechazarMascota}>
+          <button className="boton-rojo-encuentro" onClick={rechazarMascota}>
             ✖
           </button>
         </div>
       </div>
     </div>
-    <br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br />  
     </div>
   );
 };
